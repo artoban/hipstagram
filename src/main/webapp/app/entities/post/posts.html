@@ -1,0 +1,78 @@
+<div>
+    <h2 translate="hipstagramApp.post.home.title">Posts</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="post.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs"  translate="hipstagramApp.post.home.createLabel">
+                        Create new Post
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'hipstagramApp.post.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div ng-repeat="post in vm.posts track by post.id" class="col-md-4">
+            <div class="thumbnail">
+                <a ng-if="post.photo" ui-sref="post-detail.comment({postId:post.id})">
+                    <img data-ng-src="{{'data:' + post.photoContentType + ';base64,' + post.photo}}"/>
+                </a>
+                <div class="caption">
+                    <h3>Author: {{post.author.login}}</h3>
+                    <h3>{{post.text}}</h3>
+                    <p>{{post.date | date:'medium'}}</p>
+                    <p>Likes: {{post.likes.length || 0}}</p>
+                    <p>
+                        <span ng-repeat="tag in post.tags">{{tag.name}}{{$last ? '': ', '}}</span>
+                    </p>
+                </div>
+
+                <button type="submit"
+                        ng-click="vm.like(post)"
+                        class="btn btn-primary">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    <span class="hidden-xs hidden-sm">Like</span>
+                </button>
+
+                <div class="btn-group flex-btn-group-container" ng-show="vm.currentAccount.login==post.author.login">
+                    <button type="submit"
+                            ui-sref="post.edit({postId:post.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="post.delete({postId:post.id})"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>
