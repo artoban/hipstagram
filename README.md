@@ -19,6 +19,12 @@ After installing Node, you should be able to run the following command to instal
 We use [Gulp][] as our build system. Install the Gulp command-line tool globally with:
 
     npm install -g gulp
+    
+    gradle wrapper --gradle-version 2.14
+          
+    npm install -g bower
+    
+    gradle // or ./gradlew
 
 Run the following commands in two separate terminals to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
@@ -30,6 +36,12 @@ Bower is used to manage CSS and JavaScript dependencies used in this application
 specifying a newer version in `bower.json`. You can also run `bower update` and `bower install` to manage dependencies.
 Add the `-h` flag on any command to see how you can use it. For example, `bower update -h`.
 
+# Database Postgresql:
+ 
+ See video: https://www.youtube.com/watch?v=3hLsMg4qN9M
+  
+ Verify username / password with : config/application-prod.yml
+ 
 
 ## Building for production
 

@@ -20,8 +20,8 @@ spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/hipstagram
         name:
-        username: hipstagram
-        password:
+        username: root_user
+        password: root_user
     jpa:
         database-platform: com.github.invizible.hipstagram.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
