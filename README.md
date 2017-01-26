@@ -42,6 +42,11 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
   
  Verify username / password with : config/application-prod.yml
  
+# Links:
+
+  https://www.youtube.com/watch?v=ua7tJUCts3o
+  https://github.com/Invizible/hipstagram/tree/jhipster_upgrade
+  https://www.youtube.com/watch?v=dzdjP3CPOCs
 
 ## Building for production
 
